@@ -1,0 +1,143 @@
+---
+title: "My first notebook"
+author: Jenni
+date: 1 October 2019
+output: 
+  html_document:
+    toc: true
+    toc_float:
+      collapsed: true
+---
+
+Hello, Website!
+
+For more information about simple R Markdown websites, please read the documentation at https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html.
+
+Please also note that simple R Markdown sites are _not_ based on **blogdown**. They are probably good for websites with only a few Rmd documents. For larger-scale and more sophisticated websites (such as blogs), you may want to use **blogdown** instead: https://github.com/rstudio/blogdown.
+
+# Heading 1: Eka otsikko {#head1}
+  test after heading
+
+**Bold** texs here
+
+*italic* text here  
+^sperscript^ text here
+
+~subscript~ text here
+
+~~strikethrough~~ text here
+
+'code' text here
+  
+## Header 2
+kokkeilu
+
+### Header 3
+
+
+asdfa
+adfa
+
+asdas
+
+sfsad
+
+
+[text of link](https://cambiotraining.github.io/reproducibility-training/)
+
+#### nakyyko oikein?
+
+You can find more information in [this section](#head1)
+
+bla bla bla [^1]
+
+
+
+[^1]:This will be the footnote 
+
+
+
+## Lists
+1. Item 1
+  a. Sub item 1.a
+  b. Sub item 1.b
+2. Item 2
+3. Item 3
+
+* Item 1
+* Item 2
+* Item 3
+
+<!-- do not show this in report -->
+
+# Images
+
+<img src="img/r-1015546_960_720.jpg" width=50 />  
+![Caption here](img/r-1015546_960_720.jpg)
+
+#Tables
+
+| Column 1 | Column 2 | Column 3|
+| -------- | -------- | -------- |
+| Item 1 | Item 2 | Item 3|
+|test pituus | enta nyt | hip |  
+
+# Blocks   
+
+```
+print("Hello world")
+x <- 1+2
+
+```
+
+#Inserting R code chunks
+downloading the original data
+
+```{r include=FALSE}
+download.file(url="https://raw.githubusercontent.com/cambiotraining/reproducibility-training/master/data/gapminder_data.csv", destfile="data/gapminder_data.csv")
+```
+
+
+
+```{r echo=TRUE}
+library(tidyverse)
+pop_data <- read.csv("data/gapminder_data.csv")
+
+#create a table with only European countries in 2007 showing countries with largest life expetancies first
+
+euro_data_tbl <- pop_data %>% 
+                filter(continent == "Europe" & year == 2007) %>%
+                arrange(desc(lifeExp))
+```
+
+
+```{r}
+
+library(rmarkdown)
+paged_table(euro_data_tbl)
+```
+
+```{r}
+
+#create a dataset that will be used to plot an image
+library(tidyverse)
+euro_data_fig <- pop_data %>%
+            filter(continent=="Europe")
+
+#create an image
+
+
+
+```
+
+
+
+```{r, fig.cap="Life expectance in Europe"}
+
+euro_data_fig %>%
+        ggplot(mapping = )
+
+```
+
+
+
